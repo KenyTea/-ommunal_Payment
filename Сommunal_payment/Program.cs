@@ -10,6 +10,9 @@ namespace Сommunal_payment
     {
         static void Main(string[] args)
         {
+
+
+
         }
     }
 }
