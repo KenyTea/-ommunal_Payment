@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manage\Payer.cs" />
+    <Compile Include="Modules\BasicTariffs.cs" />
+    <Compile Include="Modules\Bill.cs" />
+    <Compile Include="Modules\Payer.cs" />
+    <Compile Include="Modules\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

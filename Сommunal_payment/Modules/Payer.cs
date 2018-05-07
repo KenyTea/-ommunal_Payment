@@ -22,8 +22,9 @@ namespace Сommunal_payment.Manage
 
     public enum Privileges // наличие льгот (ветеран труда– 30 % от его части; ветеран войны- 50% от его части)
     {
-        WarVeteran = 1,
-        VeteranOfLabour = 2
+        NoOne = 0,
+        VeteranOfLabour = 1,
+        WarVeteran = 3,
     }
 
     public class Payer // плательщик
