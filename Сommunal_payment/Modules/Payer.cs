@@ -33,15 +33,18 @@ namespace Сommunal_payment.Manage
         public int Residents { get; set; } // количество проживающих людей
         public Season season { get; private set; } // сезон
         public Privileges privileges { get; private set; }
+        public double WaterReading { get; set; }
 
         public Payer() {}
 
         public Payer(int area, int residents, int season, int privileges)
         {
+            Random rand = new Random();
             Area = area;
             Residents = residents;
             this.season = (Season)season;
             this.privileges = (Privileges)privileges;
+            WaterReading = rand.Next(3, 12);
         }
 
         public void PrintInfo()
