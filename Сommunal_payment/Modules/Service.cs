@@ -21,24 +21,23 @@ namespace Сommunal_payment.Modules
             get { return bill[i]; }
         }
 
-        public void Count(int area, int residents)
+        public void Count(Payer payer)
         {
 
             Bill bil = new Bill();
-            Payer payer = new Payer();
             BasicTariffs tariffs = new BasicTariffs();
 
             if (payer.privileges == (Privileges)0)
             {
                 if (payer.season == (Season)1 || payer.season == (Season)2)
                 {
-                    bil.PayHeating = tariffs.Heating * area;
+                    bil.PayHeating = tariffs.Heating * payer.Area;
                     bil.ToHeating = "To Heating";
                     bil.PayWater = tariffs.Water * payer.WaterReading;
                     bil.ToWater = "To Water";
-                    bil.PayGas = tariffs.Gas * residents;
+                    bil.PayGas = tariffs.Gas * payer.Residents;
                     bil.ToGas = "To Gas";
-                    bil.PayMaintenance = tariffs.Maintenance * area;
+                    bil.PayMaintenance = tariffs.Maintenance * payer.Area;
                     bil.ToMaintenance = "To Maintatence";
                     bil.TotalPay = bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance;
 
@@ -46,13 +45,13 @@ namespace Сommunal_payment.Modules
                 }
                 else if (payer.season == (Season)3 || payer.season == (Season)4)
                 {
-                    bil.PayHeating = ((tariffs.Heating) * 1.5) * area;
+                    bil.PayHeating = ((tariffs.Heating) * 1.5) * payer.Area;
                     bil.ToHeating = "To Heating";
                     bil.PayWater = tariffs.Water * payer.WaterReading;
                     bil.ToWater = "To Water";
-                    bil.PayGas = tariffs.Gas * residents;
+                    bil.PayGas = tariffs.Gas * payer.Residents;
                     bil.ToGas = "To Gas";
-                    bil.PayMaintenance = tariffs.Maintenance * area;
+                    bil.PayMaintenance = tariffs.Maintenance * payer.Area;
                     bil.ToMaintenance = "To Maintatence";
                     bil.TotalPay = bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance;
 
@@ -62,30 +61,32 @@ namespace Сommunal_payment.Modules
 
             else if (payer.privileges == (Privileges)1)
             {
-                bil.PayHeating = tariffs.Heating * area;
+                bil.PayHeating = tariffs.Heating * payer.Area;
                 bil.ToHeating = "To Heating";
                 bil.PayWater = tariffs.Water * payer.WaterReading;
                 bil.ToWater = "To Water";
-                bil.PayGas = tariffs.Gas * residents;
+                bil.PayGas = tariffs.Gas * payer.Residents;
                 bil.ToGas = "To Gas";
-                bil.PayMaintenance = tariffs.Maintenance * area;
+                bil.PayMaintenance = tariffs.Maintenance * payer.Area;
                 bil.ToMaintenance = "To Maintatence";
-                bil.TotalPay = (bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance) * 0.30;
+                bil.TotalPay = bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance -
+                    ((bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance) * 0.30);
 
                 bill.Add(bil);
             }
 
             else if (payer.privileges == (Privileges)2)
             {
-                bil.PayHeating = tariffs.Heating * area;
+                bil.PayHeating = tariffs.Heating * payer.Area;
                 bil.ToHeating = "To Heating";
                 bil.PayWater = tariffs.Water * payer.WaterReading;
                 bil.ToWater = "To Water";
-                bil.PayGas = tariffs.Gas * residents;
+                bil.PayGas = tariffs.Gas * payer.Residents;
                 bil.ToGas = "To Gas";
-                bil.PayMaintenance = tariffs.Maintenance * area;
+                bil.PayMaintenance = tariffs.Maintenance * payer.Area;
                 bil.ToMaintenance = "To Maintatence";
-                bil.TotalPay = (bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance) * 0.30;
+                bil.TotalPay = bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance -
+                    ((bil.PayHeating + bil.PayWater + bil.PayGas + bil.PayMaintenance) * 0.50);
 
                 bill.Add(bil);
             }
@@ -93,7 +94,18 @@ namespace Сommunal_payment.Modules
 
         }
 
+        public void TotalPrint()
+        {
+            List<Bill> bill = new List<Bill>();
 
+            foreach (Bill item in bill)
+            {
+                Console.WriteLine(item.ToHeating + " - " + item.PayHeating);
+                Console.WriteLine(item.ToWater + " - " + item.PayWater);
+                Console.WriteLine(item.ToGas + " - " + item.PayGas);
+                Console.WriteLine(item.ToMaintenance + " - " + item.PayMaintenance);
+            }
+        }
 
 
 

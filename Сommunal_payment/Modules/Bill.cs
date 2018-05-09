@@ -21,4 +21,6 @@ namespace Сommunal_payment.Manage
         public double TotalPay { get; set; }
 
     }
+
+
 }

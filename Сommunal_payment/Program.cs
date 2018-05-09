@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Сommunal_payment.Manage;
+using Сommunal_payment.Modules;
 
 namespace Сommunal_payment
 {
@@ -26,10 +27,30 @@ namespace Сommunal_payment
     {
         static void Main(string[] args)
         {
+            int areaa = 0, residentss, saesonn, privilegess;
 
-            Payer payer = new Payer(32, 2, 1, 1);
+            Console.WriteLine("Enter area");
+            int.TryParse(Console.ReadLine(), out areaa);
+            Console.Clear();
+            Console.WriteLine("Enter the number of residents");
+            int.TryParse(Console.ReadLine(), out residentss);
+            Console.Clear();
+            Console.WriteLine("Enter saeson (Spring = 1, summer = 2, autumn = 3, winter = 4)");
+            int.TryParse(Console.ReadLine(), out saesonn);
+            Console.Clear();
+            Console.WriteLine("Enter privileges (no benefits = 0, veteran of war = 1, veteran of war = 2) ");
+            int.TryParse(Console.ReadLine(), out privilegess);
+
+            Payer payer = new Payer(areaa, residentss, saesonn, privilegess);
             payer.PrintInfo();
 
+            Console.ReadLine();
+            Console.Clear();
+
+            Service serv = new Service();
+            serv.Count(payer);
+
+            serv.TotalPrint();
 
         }
     }
