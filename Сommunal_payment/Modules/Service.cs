@@ -94,17 +94,15 @@ namespace Сommunal_payment.Modules
 
         }
 
-        public void TotalPrint()
+        public void TotalPrint(Service service, Payer payer)
         {
-            List<Bill> bill = new List<Bill>();
+            double TotalSumm = 0;
 
-            foreach (Bill item in bill)
+            for (int i = 0; i < bill.Count; i++)
             {
-                Console.WriteLine(item.ToHeating + " - " + item.PayHeating);
-                Console.WriteLine(item.ToWater + " - " + item.PayWater);
-                Console.WriteLine(item.ToGas + " - " + item.PayGas);
-                Console.WriteLine(item.ToMaintenance + " - " + item.PayMaintenance);
+                TotalSumm = service[i].PayGas + service[i].PayHeating + service[i].PayMaintenance + service[i].PayWater;
             }
+            Console.WriteLine("Total sum = " + TotalSumm);
         }
 
 

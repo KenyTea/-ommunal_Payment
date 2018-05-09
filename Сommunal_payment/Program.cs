@@ -50,7 +50,7 @@ namespace Сommunal_payment
             Service serv = new Service();
             serv.Count(payer);
 
-            serv.TotalPrint();
+            serv.TotalPrint(serv, payer);
 
         }
     }
